@@ -227,11 +227,11 @@ function buttplug.send_stop_all_devices_cmd()
 end
 
 function buttplug.count_devices()
-    return table.getn(buttplug.devices)
+    return #buttplug.devices
 end
 
 function buttplug.add_device(dev)
-    local dev_count = table.getn(buttplug.devices)
+    local dev_count = #buttplug.devices
         
     buttplug.devices[dev_count + 1] = {
         index = dev["DeviceIndex"],
