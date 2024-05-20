@@ -1,5 +1,3 @@
--- local pollnet = require("pollnet")
--- local json = require("json")
 local buttplug = require("buttplug")
 
 -- get system Sleep function
@@ -7,6 +5,7 @@ local ffi = require("ffi")
 
 ffi.cdef[[
 void Sleep(int ms);
+int poll(struct pollfd *fds,unsigned long nfds,int timeout);
 ]]
 
 local sleep
