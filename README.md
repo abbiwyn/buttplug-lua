@@ -16,7 +16,3 @@ Known to work with these versions:
 
 - Lua 5.3
 - [pollnet v0.5.1](https://github.com/probable-basilisk/pollnet/releases/tag/v0.5.1)
-
-## Known issues
-
-- Multiple devices have not been tested.
