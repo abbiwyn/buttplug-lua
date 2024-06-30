@@ -1,5 +1,3 @@
--- local pollnet = require("pollnet")
--- local json = require("json")
 local buttplug = require("buttplug")
 
 -- get system Sleep function
@@ -7,6 +5,7 @@ local ffi = require("ffi")
 
 ffi.cdef[[
 void Sleep(int ms);
+int poll(struct pollfd *fds,unsigned long nfds,int timeout);
 ]]
 
 local sleep
@@ -55,14 +54,15 @@ function main_loop()
         end
 
         -- Game doing other things, including running the thing
-        if buttplug.count_devices() > 0 then
-            buttplug.send_vibrate_cmd(0, { 0.2 })
-            sleep(500)
-            buttplug.send_vibrate_cmd(0, { 0 })
-            os.exit()
+        for device_index = 0, buttplug.count_devices()-1 do
+            buttplug.send_vibrate_cmd(device_index, { 0.2 })
         end
-        
         sleep(500)
+        for device_index = 0, buttplug.count_devices()-1 do
+            buttplug.send_vibrate_cmd(device_index, { 0 })
+        end
+        sleep(500)
+        
     end
 end
 
